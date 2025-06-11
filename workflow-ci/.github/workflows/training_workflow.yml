@@ -1,0 +1,50 @@
+name: Retrain Model CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  train-model:
+    runs-on: ubuntu-latest
+    
+    # Menetapkan shell default untuk semua langkah 'run' di job ini
+    # 'bash -l {0}' memastikan shell login digunakan, yang akan memuat konfigurasi Conda
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    # 1. Checkout kode
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Setup Conda
+    # Action ini sekarang akan menginisialisasi shell untuk semua langkah berikutnya
+    - name: Setup Conda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        # Secara otomatis membuat dan mengaktifkan environment dari file conda.yaml kita
+        activate-environment: airline-satisfaction-ci # Nama env dari conda.yaml
+        environment-file: MLProject/conda.yaml     # Path ke file conda.yaml
+        python-version: "3.10"                     # Pastikan versi python konsisten
+        auto-update-conda: true
+
+    # 3. Verifikasi Instalasi
+    # Langkah ini untuk memastikan conda dan mlflow terinstal di environment yang benar
+    - name: Display versions
+      run: |
+        conda --version
+        mlflow --version
+
+    # 4. Jalankan MLflow Project
+    # Sekarang, mlflow dijalankan di dalam shell yang sudah memiliki environment conda yang aktif
+    - name: Run MLflow project
+      run: mlflow run MLProject
+
+    # 5. Simpan Artefak
+    - name: Upload MLflow artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: mlflow-artifacts
+        path: MLProject/mlruns

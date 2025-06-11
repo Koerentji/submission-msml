@@ -1,0 +1,12 @@
+global:
+  # Seberapa sering Prometheus akan mengambil data dari target
+  scrape_interval: 15s
+
+scrape_configs:
+  # Satu pekerjaan (job) untuk memantau exporter model kita
+  - job_name: 'ml_model_exporter'
+    static_configs:
+      # 'host.docker.internal:8000' adalah alamat khusus yang memungkinkan Docker
+      # untuk terhubung ke service yang berjalan di komputer kita (host machine),
+      # yaitu skrip prometheus_exporter.py yang berjalan di port 8000.
+      - targets: ['host.docker.internal:8000']

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/469724010853687144/1f1ed50222b642f2bb0dde2c50fe4c77/artifacts
+end_time: 1749636026074
+entry_point_name: ''
+experiment_id: '469724010853687144'
+lifecycle_stage: active
+run_id: 1f1ed50222b642f2bb0dde2c50fe4c77
+run_name: Tuned_RandomForest_Final
+run_uuid: 1f1ed50222b642f2bb0dde2c50fe4c77
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749636010023
+status: 3
+tags: []
+user_id: Pongo

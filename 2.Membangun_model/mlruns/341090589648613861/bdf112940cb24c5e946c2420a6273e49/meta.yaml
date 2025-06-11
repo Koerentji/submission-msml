@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/341090589648613861/bdf112940cb24c5e946c2420a6273e49/artifacts
+end_time: 1749636074398
+entry_point_name: ''
+experiment_id: '341090589648613861'
+lifecycle_stage: active
+run_id: bdf112940cb24c5e946c2420a6273e49
+run_name: Baseline_RandomForest_Fast
+run_uuid: bdf112940cb24c5e946c2420a6273e49
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749636066340
+status: 3
+tags: []
+user_id: Pongo
